@@ -50,11 +50,11 @@ const WebLayout = () => {
 				<NavigationMenu>
 					<NavigationMenuList>
 						<NavigationMenuItem className="cursor-pointer">
-							<NavigationMenuLink>Home</NavigationMenuLink>
+							<NavigationMenuLink><a href="/">Home</a></NavigationMenuLink>
 						</NavigationMenuItem>
 
 						<NavigationMenuItem className="cursor-pointer">
-							<NavigationMenuLink>News</NavigationMenuLink>
+							<NavigationMenuLink><a href="/news">News</a></NavigationMenuLink>
 						</NavigationMenuItem>
 					</NavigationMenuList>
 				</NavigationMenu>

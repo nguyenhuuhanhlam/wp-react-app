@@ -1,6 +1,6 @@
 const HomePage = () => {
 	return (
-		<div className="bg-white text-black">Home Container!!!</div>
+		<div className="bg-white text-black">Home!</div>
 	)
 }
 
