@@ -69,6 +69,12 @@ h1 {
   line-height: 1.1;
 }
 
+.container {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  width: '100%';
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
