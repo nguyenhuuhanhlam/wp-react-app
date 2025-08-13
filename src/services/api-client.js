@@ -1,5 +1,6 @@
 import axios from 'axios'
 
+// const api = axios.create({ baseURL: 'https://buithanhphap.com/wp-json/wp/v2' })
 const api = axios.create({ baseURL: 'https://archihau.edu.vn/wp-json/wp/v2' })
 
 export const getLatestPosts = async () => {
@@ -20,3 +21,5 @@ export const getLatestPosts = async () => {
 		return []
 	}
 }
+
+export const getStickyPosts = async () => await api.get()

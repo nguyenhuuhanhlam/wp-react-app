@@ -1,6 +1,7 @@
 'use client'
 
 import { Outlet } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import {
 	NavigationMenu,
 	NavigationMenuContent,
@@ -13,6 +14,7 @@ import {
 } from '@/components/ui/navigation-menu'
 
 const WebLayout = () => {
+
 	return (
 		<div className="flex flex-col min-h-screen bg-white">
 			<div className="container mx-auto">
@@ -50,11 +52,21 @@ const WebLayout = () => {
 				<NavigationMenu>
 					<NavigationMenuList>
 						<NavigationMenuItem className="cursor-pointer">
-							<NavigationMenuLink><a href="/">Home</a></NavigationMenuLink>
+							<NavigationMenuLink
+								asChild
+								className="p-0 hover:bg-transparent hover:text-inherit data-[state=open]:bg-transparent focus:bg-transparent"
+							>
+								<Link to="/">Home</Link>
+							</NavigationMenuLink>
 						</NavigationMenuItem>
 
-						<NavigationMenuItem className="cursor-pointer">
-							<NavigationMenuLink><a href="/news">News</a></NavigationMenuLink>
+						<NavigationMenuItem>
+							<NavigationMenuLink
+								asChild
+								className="p-0 hover:bg-transparent hover:text-inherit data-[state=open]:bg-transparent focus:bg-transparent"
+							>
+								<Link to="/news" className="pl-4">News</Link>
+							</NavigationMenuLink>
 						</NavigationMenuItem>
 					</NavigationMenuList>
 				</NavigationMenu>
@@ -64,8 +76,8 @@ const WebLayout = () => {
 				<Outlet />
 			</main>
 
-			<div className="w-full flex justify-center text-black">
-				<div>FOOTER</div>
+			<div className="w-full bg-neutral-900">
+				<div className="container mx-auto text-neutral-300 py-18">LOGO</div>
 			</div>
 		</div>
 	)
