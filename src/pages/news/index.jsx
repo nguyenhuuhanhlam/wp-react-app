@@ -11,7 +11,7 @@ const NewsPage = () => {
 
 	useEffect(() => {
 		(async () => {
-			const latestPosts = await getLatestPosts()
+			const latestPosts = await getLatestPosts(4)
 			setPosts(latestPosts)
 		})()
 	}, [])
@@ -21,22 +21,44 @@ const NewsPage = () => {
 	}
 
 	return (
-		<div className="w-full">
+		<div className="w-full pt-4">
+			<h1 className="text-[32px]! font-bold text-stone-500">News</h1>
 
 			{/** SECTION-1 */}
-			<div className="flex md:flex-row my-4">
-				<div className="md:w-[60%] px-2 md:px-0">
+			<div className="flex flex-col md:flex-row my-4 gap-8">
+
+				<div className="w-full md:w-[65%] md:px-0 bg-stone-50">
+					<ImageTextBlock
+						variant="landscape"
+						title={posts[1]?.title?.rendered}
+						imgSrc={posts[1]?._embedded['wp:featuredmedia'][0]['source_url']}
+						imageSize="sm:w-64"
+						textPosition="bottom"
+					/>
+				</div>
+
+				<div className="w-full flex flex-col gap-8 md:w-[35%] bg-stone-50">
 					<ImageTextBlock
 						variant="landscape"
 						title={posts[2]?.title?.rendered}
 						imgSrc={posts[2]?._embedded['wp:featuredmedia'][0]['source_url']}
 						imageSize="sm:w-64"
+						textPosition="bottom"
+					/>
+					<ImageTextBlock
+						variant="landscape"
+						title={posts[3]?.title?.rendered}
+						imgSrc={posts[3]?._embedded['wp:featuredmedia'][0]['source_url']}
+						imageSize="sm:w-64"
+						textPosition="bottom"
 					/>
 				</div>
-				<div className="md:w-[40%] bg-green-100">M2</div>
 			</div>
 
 			{/** SECTION-2 */}
+			<h1 className="text-[32px]! font-bold text-stone-500 pt-8">Highlights</h1>
+
+			{/** SECTION-3 */}
 			{/* <div className="flex flex-col md:flex-row">
 				<div className="w-full md:w-[75%] bg-slate-100">
 					F-News
