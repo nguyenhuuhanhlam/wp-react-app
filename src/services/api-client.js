@@ -23,3 +23,24 @@ export const getLatestPosts = async (per_page = 10) => {
 }
 
 export const getStickyPosts = async () => await api.get()
+
+export const getPostsByCategory = async (category_id, limit = 5, page = 1) => {
+	try {
+		const res = await api.get(`/posts`, {
+			params: {
+				categories: category_id, // lọc theo category ID
+				per_page: limit,        // giới hạn số post
+				page: page,             // phân trang
+				orderby: "date",        // sắp xếp theo ngày
+				order: "desc",          // mới nhất trước
+				// _fields: "id,title,excerpt,link", // chỉ lấy field cần thiết
+				_embed: true
+			}
+		})
+
+		return res.data
+	} catch (error) {
+		console.error('ERROR ::', error)
+		return []
+	}
+}
