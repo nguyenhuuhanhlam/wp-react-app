@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { Spinner } from '@/components/ui/shadcn-io/spinner'
 
 import { getLatestPosts, getPostsByCategory } from "@/services/api-client"
 import PostsGrid from '@/components/wp/posts-grid'
@@ -9,14 +10,39 @@ import { getFeaturedImage } from '@/lib/helpers'
 const NewsPage = () => {
 	const [posts, setPosts] = useState([])
 	const [highlights, setHighlights] = useState([])
+
+	const [page, setPage] = useState(1)
+	const [loading, setLoading] = useState(false)
+	const [hasMore, setHasMore] = useState(true)
+	const [observerSupported, setObserverSupported] = useState(true)
+	const observer = useRef(null)
+
 	const navigate = useNavigate()
 
-	useEffect(() => {
-		(async () => {
-			const latestPosts = await getLatestPosts()
-			setPosts(latestPosts)
-		})()
-	}, [])
+	const lastPostRef = useCallback((node) => {
+		if (!observerSupported) return
+		if (loading) return
+		if (observer.current) observer.current.disconnect()
+
+		try {
+			observer.current = new IntersectionObserver((entries) => {
+				if (entries[0].isIntersecting && hasMore) {
+					setPage((prev) => prev + 1)
+				}
+			})
+			if (node) observer.current.observe(node)
+		} catch (err) {
+			console.warn("IntersectionObserver not supported, fallback to button")
+			setObserverSupported(false)
+		}
+	}, [loading, hasMore, observerSupported])
+
+	// useEffect(() => {
+	// 	(async () => {
+	// 		const latestPosts = await getLatestPosts(6, page)
+	// 		setPosts(latestPosts)
+	// 	})()
+	// }, [])
 
 	useEffect(() => {
 		(async () => {
@@ -25,6 +51,20 @@ const NewsPage = () => {
 			setHighlights(highlights)
 		})()
 	}, [])
+
+	useEffect(() => {
+		const fetchPosts = async () => {
+			setLoading(true)
+			const newPosts = await getLatestPosts(6, page)
+			if (newPosts.length > 0) {
+				setPosts((prev) => [...prev, ...newPosts])
+			} else {
+				setHasMore(false)
+			}
+			setLoading(false)
+		}
+		fetchPosts()
+	}, [page])
 
 	const handleOnClick = (id, slug) => {
 		navigate(`/news/${id}/${slug}`)
@@ -88,6 +128,31 @@ const NewsPage = () => {
 			<h1 className="text-[32px]! font-bold text-stone-500">SECTION 3</h1>
 			<div className="py-8">
 				<PostsGrid posts={posts} columns={3} mobileColumns={2} onClick={handleOnClick} />
+
+				{loading && (
+					<div className="flex justify-center mt-6">
+						<Spinner className="w-6 h-6 text-gray-700" />
+					</div>
+				)}
+
+				{observerSupported && hasMore && <div ref={lastPostRef} className="h-10" />}
+
+				{!observerSupported && hasMore && (
+					<div className="text-center mt-8">
+						<button
+							onClick={() => setPage((prev) => prev + 1)}
+							disabled={loading}
+							className="px-6 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-700 transition"
+						>
+							{loading ? "Loading..." : "Load More"}
+						</button>
+					</div>
+				)}
+
+				{!hasMore && (
+					<p className="text-center text-gray-500 mt-4">No more posts.</p>
+				)}
+
 			</div>
 		</div>
 	)
