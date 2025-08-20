@@ -71,7 +71,8 @@ const ImageTextBlock = ({
           <h3 className="text-lg font-semibold">{title}</h3>
           {description && (
             <div
-              className="hidden sm:block text-sm text-gray-500 line-clamp-2"
+              className="hidden sm:block text-sm text-neutral-500 overflow-hidden"
+              style={{ display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}
               dangerouslySetInnerHTML={{ __html: description }}
             />
           )}
@@ -97,7 +98,8 @@ const ImageTextBlock = ({
           <h3 className="text-lg font-semibold">{title}</h3>
           {description && (
             <div
-              className="hidden sm:block text-sm text-red-500 line-clamp-2"
+              className="hidden sm:block text-sm text-neutral-500 overflow-hidden"
+              style={{ display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}
               dangerouslySetInnerHTML={{ __html: description }}
             />
           )}
@@ -107,4 +109,4 @@ const ImageTextBlock = ({
   );
 };
 
-export default ImageTextBlock;
+export default ImageTextBlock

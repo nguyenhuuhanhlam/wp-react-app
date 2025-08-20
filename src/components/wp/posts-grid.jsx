@@ -37,7 +37,8 @@ const PostsGrid = ({ posts = [], columns = 3, mobileColumns = 1, onClick = () =>
                 dangerouslySetInnerHTML={{ __html: post.title.rendered }}
               />
               <div
-                className="hidden sm:block text-sm text-gray-500 line-clamp-2"
+                className="hidden sm:block text-sm text-neutral-500 overflow-hidden"
+                style={{ display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}
                 dangerouslySetInnerHTML={{
                   __html: post.excerpt.rendered,
                 }}

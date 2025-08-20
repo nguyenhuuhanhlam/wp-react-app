@@ -18,6 +18,8 @@ const HomePage = () => {
 	const [observerSupported, setObserverSupported] = useState(true)
 	const observer = useRef(null)
 
+	const navigate = useNavigate()
+
 	const lastPostRef = useCallback((node) => {
 		if (!observerSupported) return
 		if (loading) return
@@ -57,12 +59,15 @@ const HomePage = () => {
 		fetchPosts()
 	}, [page])
 
-
 	useEffect(() => {
 		getPostsByCategory(43).then(res => {
 			setNotices(res)
 		})
 	}, [])
+
+	const handleOnClick = (id, slug) => {
+		navigate(`/post/${id}/${slug}`)
+	}
 
 	//#region RENDER
 	return (
@@ -70,8 +75,8 @@ const HomePage = () => {
 
 			<h1 className="text-[18px]! font-bold text-stone-500 py-4">TOP NEWS</h1>
 			<section className="grid grid-cols-1 md:grid-cols-4 gap-8">
-				{/* Cột 1 */}
-				<div className="col-span-1 grid grid-rows-2 gap-4">
+				{/* COL 1 */}
+				<div className="md:col-span-1 grid grid-rows-2 gap-8">
 					<div>
 						<ImageTextBlock
 							variant="landscape"
@@ -93,8 +98,8 @@ const HomePage = () => {
 					</div>
 				</div>
 
-				{/* Cột 2 */}
-				<div className="col-span-2">
+				{/* COL 2 */}
+				<div className="md:col-span-2">
 					<ImageTextBlock
 						variant="landscape"
 						title={postsHDK[2]?.title?.rendered}
@@ -104,8 +109,8 @@ const HomePage = () => {
 					/>
 				</div>
 
-				{/* Cột 3 */}
-				<div className="col-span-1 grid grid-rows-2 gap-4">
+				{/* COL 3 */}
+				<div className="md:col-span-1 grid grid-rows-2 gap-8">
 					<div>
 						<ImageTextBlock
 							variant="landscape"
@@ -136,7 +141,7 @@ const HomePage = () => {
 
 				<div className="md:col-span-3">
 					<h1 className="text-[18px]! font-bold text-stone-500 py-4">FEATURES</h1>
-					<PostsGrid posts={news} columns={2} mobileColumns={1} />
+					<PostsGrid posts={news} columns={2} mobileColumns={1} onClick={handleOnClick} />
 
 					{loading && (
 						<div className="flex justify-center mt-6">

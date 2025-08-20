@@ -46,6 +46,11 @@ export const getPostsByCategory = async (category_id, limit = 5, page = 1) => {
 	}
 }
 
+export const getPostDetail = async (post_id) => {
+	const res = await api.get(`/posts/${post_id}`,{params:{_embed:true}})
+	return res.data
+}
+
 export const getCategories = async () => {
 	const res = await api.get('/categories')
 	return res.data

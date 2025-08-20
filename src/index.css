@@ -163,3 +163,13 @@ h1 {
     @apply bg-background text-foreground;
   }
 }
+
+@layer components {
+  .wp-content figure.wp-block-image {
+    @apply w-full py-8 m-0;
+  }
+
+  .wp-content figure.wp-block-image img {
+    @apply w-full h-auto;
+  }
+}
