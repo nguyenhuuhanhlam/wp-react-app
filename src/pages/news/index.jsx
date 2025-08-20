@@ -37,16 +37,9 @@ const NewsPage = () => {
 		}
 	}, [loading, hasMore, observerSupported])
 
-	// useEffect(() => {
-	// 	(async () => {
-	// 		const latestPosts = await getLatestPosts(6, page)
-	// 		setPosts(latestPosts)
-	// 	})()
-	// }, [])
 
 	useEffect(() => {
 		(async () => {
-			// HAU = 34 // BTP = 14
 			const highlights = await getPostsByCategory(34, 3)
 			setHighlights(highlights)
 		})()

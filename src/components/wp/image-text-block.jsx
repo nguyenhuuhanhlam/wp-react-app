@@ -57,7 +57,7 @@ const ImageTextBlock = ({
     );
   }
 
-  // Nếu side, top, bottom
+  // side, top, bottom
   return (
     <div
       className={clsx(
@@ -65,15 +65,19 @@ const ImageTextBlock = ({
         textPosition === "side" ? "flex-col sm:flex-row" : "flex-col"
       )}
     >
-      {/* Text ở trên */}
+
       {textPosition === "top" && (
         <div className="flex flex-col justify-center mb-2 sm:mb-0">
           <h3 className="text-lg font-semibold">{title}</h3>
-          <p className="text-sm text-gray-600">{description}</p>
+          {description && (
+            <div
+              className="hidden sm:block text-sm text-gray-500 line-clamp-2"
+              dangerouslySetInnerHTML={{ __html: description }}
+            />
+          )}
         </div>
       )}
 
-      {/* Ảnh */}
       <div
         className={clsx(
           "relative flex-shrink-0 overflow-hidden bg-gray-200",
@@ -88,11 +92,15 @@ const ImageTextBlock = ({
         />
       </div>
 
-      {/* Text ở dưới hoặc bên cạnh */}
       {(textPosition === "bottom" || textPosition === "side") && (
         <div className="flex flex-col justify-center mt-2 sm:mt-0">
           <h3 className="text-lg font-semibold">{title}</h3>
-          <p className="text-sm text-gray-600">{description}</p>
+          {description && (
+            <div
+              className="hidden sm:block text-sm text-red-500 line-clamp-2"
+              dangerouslySetInnerHTML={{ __html: description }}
+            />
+          )}
         </div>
       )}
     </div>

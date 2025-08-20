@@ -33,7 +33,7 @@ const PostsGrid = ({ posts = [], columns = 3, mobileColumns = 1, onClick = () =>
             )}
             <div>
               <h2
-                className="text-lg font-semibold mb-2 mt-2 line-clamp-3"
+                className="text-lg font-semibold mb-2 mt-2 line-clamp-2"
                 dangerouslySetInnerHTML={{ __html: post.title.rendered }}
               />
               <div

@@ -45,3 +45,8 @@ export const getPostsByCategory = async (category_id, limit = 5, page = 1) => {
 		return []
 	}
 }
+
+export const getCategories = async () => {
+	const res = await api.get('/categories')
+	return res.data
+}

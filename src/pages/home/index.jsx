@@ -1,6 +1,185 @@
+import { useEffect, useState, useRef, useCallback } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { Spinner } from '@/components/ui/shadcn-io/spinner'
+
+import { getLatestPosts, getPostsByCategory, getCategories } from "@/services/api-client"
+import PostsGrid from '@/components/wp/posts-grid'
+import ImageTextBlock from '@/components/wp/image-text-block'
+import { getFeaturedImage } from '@/lib/helpers'
+
 const HomePage = () => {
+	const [postsHDK, setPostsHDK] = useState([])
+	const [news, setNews] = useState([])
+	const [notices, setNotices] = useState([])
+
+	const [page, setPage] = useState(2)
+	const [loading, setLoading] = useState(false)
+	const [hasMore, setHasMore] = useState(true)
+	const [observerSupported, setObserverSupported] = useState(true)
+	const observer = useRef(null)
+
+	const lastPostRef = useCallback((node) => {
+		if (!observerSupported) return
+		if (loading) return
+		if (observer.current) observer.current.disconnect()
+
+		try {
+			observer.current = new IntersectionObserver((entries) => {
+				if (entries[0].isIntersecting && hasMore) {
+					setPage((prev) => prev + 1)
+				}
+			})
+			if (node) observer.current.observe(node)
+		} catch (err) {
+			console.warn("IntersectionObserver not supported, fallback to button")
+			setObserverSupported(false)
+		}
+	}, [loading, hasMore, observerSupported])
+
+	useEffect(() => {
+		getPostsByCategory(36, 5, 1)
+			.then(res => {
+				setPostsHDK(res)
+			})
+	}, [])
+
+	useEffect(() => {
+		const fetchPosts = async () => {
+			setLoading(true)
+			const newPosts = await getPostsByCategory(36, 5, page)
+			if (newPosts.length > 0) {
+				setNews(prev => [...prev, ...newPosts])
+			} else {
+				setHasMore(false)
+			}
+			setLoading(false)
+		}
+		fetchPosts()
+	}, [page])
+
+
+	useEffect(() => {
+		getPostsByCategory(43).then(res => {
+			setNotices(res)
+		})
+	}, [])
+
+	//#region RENDER
 	return (
-		<div className="bg-white text-black">Home!</div>
+		<div className="bg-white text-black w-full">
+
+			<h1 className="text-[18px]! font-bold text-stone-500 py-4">TOP NEWS</h1>
+			<section className="grid grid-cols-1 md:grid-cols-4 gap-8">
+				{/* Cột 1 */}
+				<div className="col-span-1 grid grid-rows-2 gap-4">
+					<div>
+						<ImageTextBlock
+							variant="landscape"
+							title={postsHDK[0]?.title?.rendered}
+							description={postsHDK[0]?.excerpt?.rendered}
+							imgSrc={getFeaturedImage(postsHDK[0])}
+							imageSize="sm:w-64"
+							textPosition="bottom"
+						/>
+					</div>
+					<div>
+						<ImageTextBlock
+							variant="landscape"
+							title={postsHDK[1]?.title?.rendered}
+							description={postsHDK[1]?.excerpt?.rendered}
+							imgSrc={getFeaturedImage(postsHDK[1])}
+							textPosition="bottom"
+						/>
+					</div>
+				</div>
+
+				{/* Cột 2 */}
+				<div className="col-span-2">
+					<ImageTextBlock
+						variant="landscape"
+						title={postsHDK[2]?.title?.rendered}
+						description={postsHDK[2]?.excerpt?.rendered}
+						imgSrc={getFeaturedImage(postsHDK[2])}
+						textPosition="bottom"
+					/>
+				</div>
+
+				{/* Cột 3 */}
+				<div className="col-span-1 grid grid-rows-2 gap-4">
+					<div>
+						<ImageTextBlock
+							variant="landscape"
+							title={postsHDK[3]?.title?.rendered}
+							description={postsHDK[3]?.excerpt?.rendered}
+							imgSrc={getFeaturedImage(postsHDK[3])}
+							textPosition="bottom"
+						/>
+					</div>
+					<div>
+						<ImageTextBlock
+							variant="landscape"
+							title={postsHDK[4]?.title?.rendered}
+							description={postsHDK[4]?.excerpt?.rendered}
+							imgSrc={getFeaturedImage(postsHDK[4])}
+							textPosition="bottom"
+						/>
+					</div>
+				</div>
+			</section>
+
+			<h1 className="text-[18px]! font-bold text-stone-500 py-4">EVENTS</h1>
+			<section>
+				<div>Under construction!</div>
+			</section>
+
+			<section className="grid grid-cols-1 md:grid-cols-4 gap-8">
+
+				<div className="md:col-span-3">
+					<h1 className="text-[18px]! font-bold text-stone-500 py-4">FEATURES</h1>
+					<PostsGrid posts={news} columns={2} mobileColumns={1} />
+
+					{loading && (
+						<div className="flex justify-center mt-6">
+							<Spinner className="w-6 h-6 text-gray-700" />
+						</div>
+					)}
+
+					{observerSupported && hasMore && <div ref={lastPostRef} className="h-10" />}
+
+					{!observerSupported && hasMore && (
+						<div className="text-center mt-8">
+							<button
+								onClick={() => setPage((prev) => prev + 1)}
+								disabled={loading}
+								className="px-6 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-700 transition"
+							>
+								{loading ? "Loading..." : "Load More"}
+							</button>
+						</div>
+					)}
+
+					{!hasMore && (
+						<p className="text-center text-gray-500 py-8">No more posts.</p>
+					)}
+				</div>
+
+				<div className="md:col-span-1">
+					<h1 className="text-[18px]! font-bold text-stone-500 py-4">NOTICES</h1>
+					{notices.map(e => {
+						return (
+							<div
+								key={e.id}
+								className="hidden sm:block text-sm line-clamp-2 py-2"
+								dangerouslySetInnerHTML={{
+									__html: e.title.rendered,
+								}}
+							/>
+						)
+					})}
+				</div>
+
+			</section>
+		</div>
 	)
 }
 
