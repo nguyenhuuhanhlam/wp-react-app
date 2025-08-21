@@ -48,7 +48,7 @@ const HomePage = () => {
 	useEffect(() => {
 		const fetchPosts = async () => {
 			setLoading(true)
-			const newPosts = await getPostsByCategory(36, 5, page)
+			const newPosts = await getPostsByCategory(36, 6, page)
 			if (newPosts.length > 0) {
 				setNews(prev => [...prev, ...newPosts])
 			} else {
@@ -195,6 +195,8 @@ const HomePage = () => {
 							/>
 						)
 					})}
+
+					<h1 className="text-[18px]! font-bold text-stone-500 py-4">PRODUCTS</h1>
 				</div>
 
 			</section>

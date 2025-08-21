@@ -23,7 +23,7 @@ const WebLayout = () => {
 				<Outlet />
 			</main>
 
-			<div className="w-full bg-neutral-900">
+			<div className="w-full bg-neutral-900 mt-8">
 				<div className="container mx-auto text-neutral-300 py-18">
 					<img src={HAULogo} width={96}/>
 				</div>
