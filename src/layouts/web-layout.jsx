@@ -25,7 +25,7 @@ const WebLayout = () => {
 
 			<div className="w-full bg-neutral-900">
 				<div className="container mx-auto text-neutral-300 py-18">
-					<img src={HAULogo}/>
+					<img src={HAULogo} width={96}/>
 				</div>
 			</div>
 		</div>

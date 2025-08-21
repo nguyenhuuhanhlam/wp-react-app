@@ -150,14 +150,26 @@ const HomePage = () => {
 						</div>
 					)}
 
-					{observerSupported && hasMore && <div ref={lastPostRef} className="h-10" />}
+					{/* {observerSupported && hasMore && <div ref={lastPostRef} className="h-10" />} */}
 
-					{!observerSupported && hasMore && (
+					{/* {!observerSupported && hasMore && (
 						<div className="text-center mt-8">
 							<button
 								onClick={() => setPage((prev) => prev + 1)}
 								disabled={loading}
 								className="px-6 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-700 transition"
+							>
+								{loading ? "Loading..." : "Load More"}
+							</button>
+						</div>
+					)} */}
+
+					{hasMore && (
+						<div className="text-center mt-8">
+							<button
+								onClick={() => setPage((prev) => prev + 1)}
+								disabled={loading}
+								className="px-6 my-4 py-2 bg-neutral-200 hover:bg-neutral-300 transition"
 							>
 								{loading ? "Loading..." : "Load More"}
 							</button>

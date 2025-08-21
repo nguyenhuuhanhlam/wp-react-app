@@ -7,7 +7,7 @@ const MiddleBar = () => {
 			<div className="flex flex-wrap md:flex-nowrap justify-between items-center py-5">
 				<div className="flex flex-wrap items-center">
 					<a href="/">
-						<img src={HAULogo} width={48} />
+						<img src={HAULogo} width={64} />
 					</a>
 					<span className="pl-4 text-sky-600 text-sm">Faculty of Architecture</span>
 				</div>
