@@ -137,6 +137,7 @@ const HomePage = () => {
 				<div>Under construction!</div>
 			</section>
 
+			{/* SECTION 3 */}
 			<section className="grid grid-cols-1 md:grid-cols-4 gap-8">
 
 				<div className="md:col-span-3">
@@ -174,7 +175,8 @@ const HomePage = () => {
 						return (
 							<div
 								key={e.id}
-								className="hidden sm:block text-sm line-clamp-2 py-2"
+								className="hidden sm:block text-sm text-neutral-800 overflow-hidden my-4 pl-2 border-l"
+								style={{ display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}
 								dangerouslySetInnerHTML={{
 									__html: e.title.rendered,
 								}}

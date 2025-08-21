@@ -5,6 +5,7 @@ import { Outlet } from 'react-router-dom'
 import TopBar from './components/top-bar'
 import MiddleBar from './components/middle-bar'
 import NavigationBar from './components/navigation-bar'
+import HAULogo from '@/assets/hau-logo.svg'
 
 const WebLayout = () => {
 
@@ -23,7 +24,9 @@ const WebLayout = () => {
 			</main>
 
 			<div className="w-full bg-neutral-900">
-				<div className="container mx-auto text-neutral-300 py-18">LOGO</div>
+				<div className="container mx-auto text-neutral-300 py-18">
+					<img src={HAULogo}/>
+				</div>
 			</div>
 		</div>
 	)

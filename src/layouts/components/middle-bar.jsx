@@ -1,10 +1,16 @@
 import { Menu, Search } from 'lucide-react'
+import HAULogo from '@/assets/hau-logo.svg'
 
 const MiddleBar = () => {
 	return (
 		<div className="container mx-auto">
-			<div className="flex flex-wrap md:flex-nowrap justify-between items-center py-5.5">
-				<a href="/" className="w-30 md:25 xl:w-50">LOGO</a>
+			<div className="flex flex-wrap md:flex-nowrap justify-between items-center py-5">
+				<div className="flex flex-wrap items-center">
+					<a href="/">
+						<img src={HAULogo} width={48} />
+					</a>
+					<span className="pl-4 text-sky-600 text-sm">Faculty of Architecture</span>
+				</div>
 
 				<div className="md:grow mt-5 md:mt-0 xl:ml-10.5 md:ml-6 w-full md:w-auto md:block order-3 md:order-2 overflow-x-auto">
 					<a href="#" className="inline-block px-2 xl:px-4 py-1 xl:py-2 border mr-2 mb-2 xl:text-sm text-xs">Tag-1</a>
