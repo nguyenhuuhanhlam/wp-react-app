@@ -11,6 +11,7 @@ const HomePage = () => {
 	const [postsHDK, setPostsHDK] = useState([])
 	const [news, setNews] = useState([])
 	const [notices, setNotices] = useState([])
+	const [products, setProducts] = useState([])
 
 	const [page, setPage] = useState(2)
 	const [loading, setLoading] = useState(false)
@@ -62,6 +63,12 @@ const HomePage = () => {
 	useEffect(() => {
 		getPostsByCategory(43).then(res => {
 			setNotices(res)
+		})
+	}, [])
+
+	useEffect(() => {
+		getPostsByCategory(49, 5).then(res => {
+			setProducts(res)
 		})
 	}, [])
 
@@ -138,9 +145,9 @@ const HomePage = () => {
 			</section>
 
 			{/* SECTION 3 */}
-			<section className="grid grid-cols-1 md:grid-cols-4 gap-8">
+			<section className="grid grid-cols-1 md:grid-cols-6 gap-8">
 
-				<div className="md:col-span-3">
+				<div className="md:col-span-4">
 					<h1 className="text-[18px]! font-bold text-stone-500 py-4">FEATURES</h1>
 					<PostsGrid posts={news} columns={2} mobileColumns={1} onClick={handleOnClick} />
 
@@ -149,20 +156,6 @@ const HomePage = () => {
 							<Spinner className="w-6 h-6 text-gray-700" />
 						</div>
 					)}
-
-					{/* {observerSupported && hasMore && <div ref={lastPostRef} className="h-10" />} */}
-
-					{/* {!observerSupported && hasMore && (
-						<div className="text-center mt-8">
-							<button
-								onClick={() => setPage((prev) => prev + 1)}
-								disabled={loading}
-								className="px-6 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-700 transition"
-							>
-								{loading ? "Loading..." : "Load More"}
-							</button>
-						</div>
-					)} */}
 
 					{hasMore && (
 						<div className="text-center mt-8">
@@ -181,22 +174,37 @@ const HomePage = () => {
 					)}
 				</div>
 
-				<div className="md:col-span-1">
+				<div className="md:col-span-2">
 					<h1 className="text-[18px]! font-bold text-stone-500 py-4">NOTICES</h1>
 					{notices.map(e => {
 						return (
 							<div
 								key={e.id}
-								className="hidden sm:block text-sm text-neutral-800 overflow-hidden my-4 pl-2 border-l"
+								className="hidden sm:block text-sm text-neutral-800 overflow-hidden my-4 pl-2 border-l hover:text-stone-500 cursor-pointer"
 								style={{ display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}
 								dangerouslySetInnerHTML={{
 									__html: e.title.rendered,
 								}}
+								onClick={() => handleOnClick(e.id, e.slug)}
 							/>
 						)
 					})}
 
 					<h1 className="text-[18px]! font-bold text-stone-500 py-4">PRODUCTS</h1>
+					{products.map(e => {
+						return (
+							<div key={e.id} className="py-4">
+								<ImageTextBlock
+									variant="landscape"
+									title={e?.title?.rendered}
+									description={e?.excerpt?.rendered}
+									imgSrc={getFeaturedImage(e)}
+									imageSize="sm:w-32"
+									textPosition="side"
+								/>
+							</div>
+						)
+					})}
 				</div>
 
 			</section>
