@@ -3,23 +3,48 @@ import clsx from 'clsx'
 const ImageTextBlock = ({
   imgSrc,
   imgAlt = "",
-  variant = "landscape", // "portrait", "landscape", "square"
+  variant = "landscape", // "portrait" | "landscape" | "square" | "banner" | "ultrawide"
   title,
   description,
-  imageSize = "sm:w-40", // "sm:w-48" hoặc số px
+  imageSize = "sm:w-40", // e.g. "sm:w-48" or number (px)
   textPosition = "side", // "side" | "bottom" | "top" | "overlay"
   overlayPosition = "bottom", // "top" | "center" | "bottom" (khi overlay)
+
+  /** New props for banner-like control **/
+  aspectRatio = null, // e.g. '3 / 1' | 3 (CSS aspect-ratio). Nếu có, sẽ override variant
+  objectFit = "cover", // 'cover' | 'contain'
+  objectPosition = "center", // 'center' | 'top' | 'bottom' | 'left' | 'right'
+  rounded = "rounded-lg", // bo góc cho container ảnh
+  bgClass = "bg-gray-200" // nền khi objectFit='contain' (letterboxing)
 }) => {
+  // Bổ sung các tỉ lệ cho banner
   const ratioClass = {
     portrait: "aspect-[3/4]",
     landscape: "aspect-[4/3]",
     square: "aspect-square",
+    banner: "aspect-[3/1]",       // banner ngang, cao thấp
+    ultrawide: "aspect-[21/9]",   // tỉ lệ ultrawide/panorama
   };
 
   const sizeClass =
     typeof imageSize === "string" ? imageSize : `sm:w-[${imageSize}px]`;
 
-  // Nếu overlay
+  // object-fit & object-position mapping
+  const fitClass = objectFit === 'contain' ? 'object-contain' : 'object-cover';
+  const posMap = {
+    center: 'object-center',
+    top: 'object-top',
+    bottom: 'object-bottom',
+    left: 'object-left',
+    right: 'object-right',
+  };
+  const posClass = posMap[objectPosition] || 'object-center';
+
+  // Khi dùng aspectRatio prop → dùng CSS aspect-ratio để tránh purge Tailwind
+  const containerAspectClass = aspectRatio ? null : (ratioClass[variant] || "");
+  const containerStyle = aspectRatio ? { aspectRatio: aspectRatio } : undefined;
+
+  // Overlay branch
   if (textPosition === "overlay") {
     const overlayAlign = {
       top: "justify-start",
@@ -30,21 +55,24 @@ const ImageTextBlock = ({
     return (
       <div
         className={clsx(
-          "relative overflow-hidden bg-gray-200 w-full", // full width
-          ratioClass[variant]
+          "relative overflow-hidden w-full",
+          bgClass,
+          rounded,
+          containerAspectClass
         )}
+        style={containerStyle}
       >
-        {/* Ảnh cover */}
+        {/* Ảnh */}
         <img
           src={imgSrc}
           alt={imgAlt}
-          className="absolute inset-0 w-full h-full object-cover"
+          className={clsx("absolute inset-0 w-full h-full", fitClass, posClass)}
         />
 
         {/* Overlay text */}
         <div
           className={clsx(
-            "absolute inset-0 bg-black/40 flex flex-col p-4 text-white",
+            "absolute inset-0 bg-black/20 flex flex-col p-4 text-white",
             overlayAlign[overlayPosition]
           )}
         >
@@ -57,7 +85,7 @@ const ImageTextBlock = ({
     );
   }
 
-  // side, top, bottom
+  // side, top, bottom branch
   return (
     <div
       className={clsx(
@@ -65,7 +93,6 @@ const ImageTextBlock = ({
         textPosition === "side" ? "flex-col sm:flex-row" : "flex-col"
       )}
     >
-
       {textPosition === "top" && (
         <div className="flex flex-col justify-center mb-2 sm:mb-0">
           <h3 className="text-lg font-semibold">{title}</h3>
@@ -79,17 +106,21 @@ const ImageTextBlock = ({
         </div>
       )}
 
+      {/* Container ảnh (ép tỉ lệ banner/ultrawide nếu cần) */}
       <div
         className={clsx(
-          "relative flex-shrink-0 overflow-hidden bg-gray-200",
-          ratioClass[variant],
-          textPosition === "side" ? sizeClass : "w-full" // nếu side thì giữ size, còn lại full width
+          "relative flex-shrink-0 overflow-hidden",
+          bgClass,
+          rounded,
+          containerAspectClass,
+          textPosition === "side" ? sizeClass : "w-full"
         )}
+        style={containerStyle}
       >
         <img
           src={imgSrc}
           alt={imgAlt}
-          className="absolute inset-0 w-full h-full object-cover"
+          className={clsx("absolute inset-0 w-full h-full", fitClass, posClass)}
         />
       </div>
 

@@ -1,8 +1,15 @@
-import { useEffect, useState, useRef, useCallback } from 'react'
+import {
+	useEffect, useState, useRef, useCallback
+} from 'react'
+
 import { useNavigate } from 'react-router-dom'
+
+import {
+	Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
+} from '@/components/ui/carousel'
 import { Spinner } from '@/components/ui/shadcn-io/spinner'
 
-import { getLatestPosts, getPostsByCategory, getCategories } from "@/services/api-client"
+import { getLatestPosts, getPostsByCategory, getCategories, getPosts } from "@/services/api-client"
 import PostsGrid from '@/components/wp/posts-grid'
 import ImageTextBlock from '@/components/wp/image-text-block'
 import { getFeaturedImage } from '@/lib/helpers'
@@ -12,6 +19,7 @@ const HomePage = () => {
 	const [news, setNews] = useState([])
 	const [notices, setNotices] = useState([])
 	const [products, setProducts] = useState([])
+	const [events, setEvents] = useState([])
 
 	const [page, setPage] = useState(2)
 	const [loading, setLoading] = useState(false)
@@ -70,6 +78,9 @@ const HomePage = () => {
 		getPostsByCategory(49, 5).then(res => {
 			setProducts(res)
 		})
+
+		getPosts({ tagId: 50 })
+			.then(res => setEvents(res))
 	}, [])
 
 	const handleOnClick = (id, slug) => {
@@ -139,16 +150,34 @@ const HomePage = () => {
 				</div>
 			</section>
 
-			<h1 className="text-[18px]! font-bold text-stone-500 py-4">EVENTS</h1>
-			<section>
-				<div>Under construction!</div>
+			<h1 className="text-[18px]! font-bold text-stone-500 py-8">EVENTS</h1>
+			<section className="grid grid-cols-1">
+				<Carousel>
+					<CarouselContent>
+						{
+							events.map((e, k) => (
+								<CarouselItem key={k}>
+									<ImageTextBlock
+										variant="banner"
+										title={e?.title?.rendered}
+										description={e?.excerpt?.rendered}
+										imgSrc={getFeaturedImage(e)}
+										textPosition="overlay"
+									/>
+								</CarouselItem>
+							))
+						}
+					</CarouselContent>
+					{/* <CarouselPrevious />
+					<CarouselNext /> */}
+				</Carousel>
 			</section>
 
 			{/* SECTION 3 */}
 			<section className="grid grid-cols-1 md:grid-cols-6 gap-8">
 
 				<div className="md:col-span-4">
-					<h1 className="text-[18px]! font-bold text-stone-500 py-4">FEATURES</h1>
+					<h1 className="text-[18px]! font-bold text-stone-500 py-8">FEATURES</h1>
 					<PostsGrid posts={news} columns={2} mobileColumns={1} onClick={handleOnClick} />
 
 					{loading && (
@@ -175,7 +204,7 @@ const HomePage = () => {
 				</div>
 
 				<div className="md:col-span-2">
-					<h1 className="text-[18px]! font-bold text-stone-500 py-4">NOTICES</h1>
+					<h1 className="text-[18px]! font-bold text-stone-500 py-8">NOTICES</h1>
 					{notices.map(e => {
 						return (
 							<div
