@@ -13,9 +13,9 @@ const MiddleBar = () => {
 				</div>
 
 				<div className="md:grow mt-5 md:mt-0 xl:ml-10.5 md:ml-6 w-full md:w-auto md:block order-3 md:order-2 overflow-x-auto">
-					<a href="#" className="inline-block px-2 xl:px-4 py-1 xl:py-2 border mr-2 xl:text-sm text-xs">Tag-1</a>
-					<a href="#" className="inline-block px-2 xl:px-4 py-1 xl:py-2 border mr-2 xl:text-sm text-xs">Tag-2</a>
-					<a href="#" className="inline-block px-2 xl:px-4 py-1 xl:py-2 border mr-2 xl:text-sm text-xs">Tag-3</a>
+					<a href="#" className="inline-block px-2 xl:px-4 py-1 xl:py-2 border mr-2 xl:text-sm text-xs">#training</a>
+					<a href="#" className="inline-block px-2 xl:px-4 py-1 xl:py-2 border mr-2 xl:text-sm text-xs">#event</a>
+					<a href="#" className="inline-block px-2 xl:px-4 py-1 xl:py-2 border mr-2 xl:text-sm text-xs">#notice</a>
 				</div>
 
 				<div className="flex-none ml-auto order-2 md:order-3 relative">

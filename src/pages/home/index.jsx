@@ -79,7 +79,7 @@ const HomePage = () => {
 			setProducts(res)
 		})
 
-		getPosts({ tagId: 50 })
+		getPosts({ tagId: 50 }) // tagId:50 = events
 			.then(res => setEvents(res))
 	}, [])
 
@@ -103,6 +103,7 @@ const HomePage = () => {
 							imgSrc={getFeaturedImage(postsHDK[0])}
 							imageSize="sm:w-64"
 							textPosition="bottom"
+							onClick={() => handleOnClick(postsHDK[0]?.id, postsHDK[0]?.slug)}
 						/>
 					</div>
 					<div>
@@ -112,6 +113,7 @@ const HomePage = () => {
 							description={postsHDK[1]?.excerpt?.rendered}
 							imgSrc={getFeaturedImage(postsHDK[1])}
 							textPosition="bottom"
+							onClick={() => handleOnClick(postsHDK[1]?.id, postsHDK[1]?.slug)}
 						/>
 					</div>
 				</div>
@@ -124,6 +126,7 @@ const HomePage = () => {
 						description={postsHDK[2]?.excerpt?.rendered}
 						imgSrc={getFeaturedImage(postsHDK[2])}
 						textPosition="bottom"
+						onClick={() => handleOnClick(postsHDK[2]?.id, postsHDK[2]?.slug)}
 					/>
 				</div>
 
@@ -136,6 +139,7 @@ const HomePage = () => {
 							description={postsHDK[3]?.excerpt?.rendered}
 							imgSrc={getFeaturedImage(postsHDK[3])}
 							textPosition="bottom"
+							onClick={() => handleOnClick(postsHDK[3]?.id, postsHDK[3]?.slug)}
 						/>
 					</div>
 					<div>
@@ -145,6 +149,7 @@ const HomePage = () => {
 							description={postsHDK[4]?.excerpt?.rendered}
 							imgSrc={getFeaturedImage(postsHDK[4])}
 							textPosition="bottom"
+							onClick={() => handleOnClick(postsHDK[4]?.id, postsHDK[4]?.slug)}
 						/>
 					</div>
 				</div>
@@ -156,7 +161,7 @@ const HomePage = () => {
 					<CarouselContent>
 						{
 							events.map((e, k) => (
-								<CarouselItem key={k}>
+								<CarouselItem key={k} onClick={() => handleOnClick(e?.id, e?.slug)}>
 									<ImageTextBlock
 										variant="banner"
 										title={e?.title?.rendered}
@@ -230,6 +235,7 @@ const HomePage = () => {
 									imgSrc={getFeaturedImage(e)}
 									imageSize="sm:w-32"
 									textPosition="side"
+									onClick={() => handleOnClick(e?.id, e?.slug)}
 								/>
 							</div>
 						)

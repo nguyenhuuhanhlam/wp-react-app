@@ -16,12 +16,12 @@ const PostDetailPage = () => {
 	return (
 		<section className="grid grid-cols-4 gap-8">
 			<div className="col-span-4 md:col-span-3">
-				<h2
-					className="text-lg font-semibold"
+				<h1
+					className="text-lg font-semibold py-8"
 					dangerouslySetInnerHTML={{ __html: post?.title.rendered }}
 				/>
 				<div className="py-2 text-xs text-emerald-500">
-					{post?._embedded['wp:term'][0][0].name}
+					{post?._embedded['wp:term'][0][0].name} - {post?._embedded['wp:term'][0][1]?.name}
 				</div>
 
 				<div

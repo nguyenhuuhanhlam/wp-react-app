@@ -14,8 +14,10 @@ const ImageTextBlock = ({
   aspectRatio = null, // e.g. '3 / 1' | 3 (CSS aspect-ratio). Nếu có, sẽ override variant
   objectFit = "cover", // 'cover' | 'contain'
   objectPosition = "center", // 'center' | 'top' | 'bottom' | 'left' | 'right'
-  rounded = "rounded-lg", // bo góc cho container ảnh
-  bgClass = "bg-gray-200" // nền khi objectFit='contain' (letterboxing)
+  rounded = "rounded-none", // bo góc cho container ảnh
+  bgClass = "bg-gray-200", // nền khi objectFit='contain' (letterboxing)
+
+  onClick = () => { }
 }) => {
   // Bổ sung các tỉ lệ cho banner
   const ratioClass = {
@@ -67,6 +69,7 @@ const ImageTextBlock = ({
           src={imgSrc}
           alt={imgAlt}
           className={clsx("absolute inset-0 w-full h-full", fitClass, posClass)}
+          onClick={onClick}
         />
 
         {/* Overlay text */}
@@ -121,6 +124,7 @@ const ImageTextBlock = ({
           src={imgSrc}
           alt={imgAlt}
           className={clsx("absolute inset-0 w-full h-full", fitClass, posClass)}
+          onClick={onClick}
         />
       </div>
 
