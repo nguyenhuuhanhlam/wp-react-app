@@ -172,4 +172,8 @@ h1 {
   .wp-content figure.wp-block-image img {
     @apply w-full h-auto;
   }
+
+  .wp-content p {
+    @apply py-2;
+  }
 }

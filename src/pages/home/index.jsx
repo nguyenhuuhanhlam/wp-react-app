@@ -229,7 +229,7 @@ const HomePage = () => {
 						return (
 							<div key={e.id} className="py-4">
 								<ImageTextBlock
-									variant="landscape"
+									variant="square"
 									title={e?.title?.rendered}
 									description={e?.excerpt?.rendered}
 									imgSrc={getFeaturedImage(e)}

@@ -16,7 +16,7 @@ const Footer = () => {
 				</div>
 			</div>
 
-			<div className="container mx-auto pb-4 flex justify-between">
+			<div className="container mx-auto pb-4 flex flex-col md:flex-row justify-between">
 				<div>
 					<a className="pr-6 text-xs border-r text-neutral-500!" href="#">Advertisement</a>
 					<a className="px-6 text-xs border-r text-neutral-500!" href="#">Submit Article</a>

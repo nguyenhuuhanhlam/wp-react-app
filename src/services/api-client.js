@@ -7,7 +7,8 @@ export const getPosts = async ({
 	per_page = 10,
 	page = 1,
 	categoryId = null,
-	tagId = null
+	tagId = null,
+	exclude = null
 } = {}) => {
 	try {
 		const res = await api.get('/posts', {
@@ -19,6 +20,7 @@ export const getPosts = async ({
 				_embed: true,
 				...(categoryId && { categories: categoryId }),
 				...(tagId && { tags: tagId }),
+				...(exclude && { exclude })
 			}
 		})
 
