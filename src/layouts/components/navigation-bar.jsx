@@ -20,7 +20,7 @@ const NavigationBar = () => {
 							asChild
 							className="p-0 hover:bg-transparent hover:text-stone-500! data-[state=open]:bg-transparent focus:bg-transparent"
 						>
-							<Link to="/">Home</Link>
+							<Link to="/">Trang Chủ</Link>
 						</NavigationMenuLink>
 					</NavigationMenuItem>
 

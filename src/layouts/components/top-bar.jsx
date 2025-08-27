@@ -7,9 +7,9 @@ const TopBar = () => {
 		<div className="container mx-auto">
 			<div className="flex flex-col sm:flex-row justify-between sm:items-center">
 				<div className="py-2">
-					<a className="pr-6 text-xs border-r" href="#">Advertisement</a>
-					<a className="px-6 text-xs border-r" href="#">Submit Article</a>
-					<a className="pl-6 text-xs" href="#">Directory</a>
+					<a className="pr-6 text-xs border-r" title="advertisement" href="#">Quảng Cáo</a>
+					<a className="px-6 text-xs border-r" href="#submit-article">Gửi Bài</a>
+					<a className="pl-6 text-xs" href="#">Danh Bạ</a>
 				</div>
 
 				<div className="py-2 flex items-center">

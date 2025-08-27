@@ -91,7 +91,7 @@ const HomePage = () => {
 	return (
 		<div className="bg-white text-black w-full">
 
-			<h1 className="text-[18px]! font-bold text-stone-500 py-4">TOP NEWS</h1>
+			<h1 className="text-[18px]! font-bold text-stone-500 py-4">HOẠT ĐỘNG KHOA</h1>
 			<section className="grid grid-cols-1 md:grid-cols-4 gap-8">
 				{/* COL 1 */}
 				<div className="md:col-span-1 grid grid-rows-2 gap-8">
@@ -155,7 +155,7 @@ const HomePage = () => {
 				</div>
 			</section>
 
-			<h1 className="text-[18px]! font-bold text-stone-500 py-8">EVENTS</h1>
+			<h1 className="text-[18px]! font-bold text-stone-500 py-8">SỰ KIỆN</h1>
 			<section className="grid grid-cols-1">
 				<Carousel>
 					<CarouselContent>
@@ -182,7 +182,7 @@ const HomePage = () => {
 			<section className="grid grid-cols-1 md:grid-cols-6 gap-8">
 
 				<div className="md:col-span-4">
-					<h1 className="text-[18px]! font-bold text-stone-500 py-8">FEATURES</h1>
+					<h1 className="text-[18px]! font-bold text-stone-500 py-8">TIN NỔI BẬT</h1>
 					<PostsGrid posts={news} columns={2} mobileColumns={1} onClick={handleOnClick} />
 
 					{loading && (
@@ -198,18 +198,18 @@ const HomePage = () => {
 								disabled={loading}
 								className="px-6 my-4 py-2 bg-neutral-200 hover:bg-neutral-300 transition"
 							>
-								{loading ? "Loading..." : "Load More"}
+								{loading ? "Đang tải..." : "Xem Thêm Bài Viết"}
 							</button>
 						</div>
 					)}
 
 					{!hasMore && (
-						<p className="text-center text-gray-500 py-8">No more posts.</p>
+						<p className="text-center text-gray-500 py-8">Không còn bài viết.</p>
 					)}
 				</div>
 
 				<div className="md:col-span-2">
-					<h1 className="text-[18px]! font-bold text-stone-500 py-8">NOTICES</h1>
+					<h1 className="text-[18px]! font-bold text-stone-500 py-8">THÔNG BÁO</h1>
 					{notices.map(e => {
 						return (
 							<div
@@ -224,7 +224,7 @@ const HomePage = () => {
 						)
 					})}
 
-					<h1 className="text-[18px]! font-bold text-stone-500 py-4">PRODUCTS</h1>
+					<h1 className="text-[18px]! font-bold text-stone-500 py-4">SẢN PHẨM</h1>
 					{products.map(e => {
 						return (
 							<div key={e.id} className="py-4">
