@@ -7,7 +7,6 @@ import MiddleBar from './components/middle-bar'
 import NavigationBar from './components/navigation-bar'
 import Footer from './components/footer'
 
-
 const WebLayout = () => {
 
 	return (

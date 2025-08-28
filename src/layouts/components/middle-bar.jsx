@@ -15,7 +15,7 @@ const MiddleBar = () => {
 				<div className="md:grow mt-5 md:mt-0 xl:ml-10.5 md:ml-6 w-full md:w-auto md:block order-3 md:order-2 overflow-x-auto">
 					<a href="#" className="inline-block px-2 xl:px-4 py-1 xl:py-2 border mr-2 xl:text-sm text-xs">#tập huấn</a>
 					<a href="#" className="inline-block px-2 xl:px-4 py-1 xl:py-2 border mr-2 xl:text-sm text-xs">#sự kiện</a>
-					<a href="#" className="inline-block px-2 xl:px-4 py-1 xl:py-2 border mr-2 xl:text-sm text-xs">#thông báo</a>
+					<a href="/notice" className="inline-block px-2 xl:px-4 py-1 xl:py-2 border mr-2 xl:text-sm text-xs">#thông báo</a>
 				</div>
 
 				<div className="flex-none ml-auto order-2 md:order-3 relative">

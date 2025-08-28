@@ -11,16 +11,16 @@ export default defineConfig({
     }
   },
   build: {
-    // outDir: 'C:/Devs/Laragon/www/WP-REACT/wp-content/themes/wp-react',
+    outDir: 'C:/Devs/Laragon/www/WP-REACT/wp-content/themes/wp-react',
     emptyOutDir: false,
     manifest: true,
-    // rollupOptions: {
-    //   output: {
-    //     entryFileNames: 'assets/main.js',
-    //     chunkFileNames: 'assets/[name].js',
-    //     assetFileNames: 'assets/[name].[ext]'
-    //   }
-    // }
+    rollupOptions: {
+      output: {
+        entryFileNames: 'assets/main.js',
+        chunkFileNames: 'assets/[name].js',
+        assetFileNames: 'assets/[name].[ext]'
+      }
+    }
   },
   server: {
     allowedHosts: [

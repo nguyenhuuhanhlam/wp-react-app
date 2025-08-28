@@ -223,6 +223,7 @@ const HomePage = () => {
 							/>
 						)
 					})}
+					<div className="p-2 text-neutral-500 border hover:border-blue-300 cursor-pointer">Xem Thêm Thông Báo</div>
 
 					<h1 className="text-[18px]! font-bold text-stone-500 py-4">SẢN PHẨM</h1>
 					{products.map(e => {

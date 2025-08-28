@@ -6,6 +6,7 @@ import WebLayout from './layouts/web-layout'
 import HomePage from './pages/home'
 import BlogPage from './pages/blog'
 import NewsPage from './pages/news'
+import NoticePage from './pages/notice'
 import PostDetailPage from './pages/post-detail'
 
 createRoot(document.getElementById('root')).render(
@@ -14,6 +15,7 @@ createRoot(document.getElementById('root')).render(
       <Route path="/" element={<WebLayout />} >
         <Route index element={<HomePage />} />
         <Route path="blog" element={<BlogPage />} />
+        <Route path="notice" element={<NoticePage />} />
         <Route path="news" element={<NewsPage />} />
         <Route path="post/:id/*" element={<PostDetailPage />} />
       </Route>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 
 import { getPostDetail, getPosts } from '@/services/api-client'
 import ImageTextBlock from '@/components/wp/image-text-block'
@@ -10,6 +10,8 @@ const PostDetailPage = () => {
 	const [post, setPost] = useState(null)
 	const [relateds, setRelateds] = useState([])
 
+	const navigate = useNavigate()
+
 	useEffect(() => {
 		getPostDetail(id)
 			.then(res => {
@@ -18,7 +20,11 @@ const PostDetailPage = () => {
 				getPosts({ categoryId: res?.categories[0], per_page: 5, exclude: id })
 					.then(res => setRelateds(res))
 			})
-	}, [])
+	}, [id])
+
+	const handleOnClick = (id, slug) => {
+		navigate(`/post/${id}/${slug}`)
+	}
 
 	return (
 		<section className="grid grid-cols-1 md:grid-cols-6 gap-8">
