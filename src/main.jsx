@@ -15,7 +15,7 @@ createRoot(document.getElementById('root')).render(
       <Route path="/" element={<WebLayout />} >
         <Route index element={<HomePage />} />
         <Route path="blog" element={<BlogPage />} />
-        <Route path="notice" element={<NoticePage />} />
+        <Route path="notices" element={<NoticePage />} />
         <Route path="news" element={<NewsPage />} />
         <Route path="post/:id/*" element={<PostDetailPage />} />
       </Route>

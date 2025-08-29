@@ -1,15 +1,10 @@
-import {
-	useEffect, useState, useRef, useCallback
-} from 'react'
-
+import { useEffect, useState, useRef, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import {
-	Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
-} from '@/components/ui/carousel'
+import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel'
 import { Spinner } from '@/components/ui/shadcn-io/spinner'
 
-import { getLatestPosts, getPostsByCategory, getCategories, getPosts } from "@/services/api-client"
+import { getPostsByCategory, getPosts } from "@/services/api-client"
 import PostsGrid from '@/components/wp/posts-grid'
 import ImageTextBlock from '@/components/wp/image-text-block'
 import { getFeaturedImage } from '@/lib/helpers'
@@ -98,22 +93,22 @@ const HomePage = () => {
 					<div>
 						<ImageTextBlock
 							variant="landscape"
-							title={postsHDK[0]?.title?.rendered}
-							description={postsHDK[0]?.excerpt?.rendered}
-							imgSrc={getFeaturedImage(postsHDK[0])}
+							title={postsHDK[1]?.title?.rendered}
+							description={postsHDK[1]?.excerpt?.rendered}
+							imgSrc={getFeaturedImage(postsHDK[1])}
 							imageSize="sm:w-64"
 							textPosition="bottom"
-							onClick={() => handleOnClick(postsHDK[0]?.id, postsHDK[0]?.slug)}
+							onClick={() => handleOnClick(postsHDK[1]?.id, postsHDK[1]?.slug)}
 						/>
 					</div>
 					<div>
 						<ImageTextBlock
 							variant="landscape"
-							title={postsHDK[1]?.title?.rendered}
-							description={postsHDK[1]?.excerpt?.rendered}
-							imgSrc={getFeaturedImage(postsHDK[1])}
+							title={postsHDK[2]?.title?.rendered}
+							description={postsHDK[2]?.excerpt?.rendered}
+							imgSrc={getFeaturedImage(postsHDK[2])}
 							textPosition="bottom"
-							onClick={() => handleOnClick(postsHDK[1]?.id, postsHDK[1]?.slug)}
+							onClick={() => handleOnClick(postsHDK[2]?.id, postsHDK[2]?.slug)}
 						/>
 					</div>
 				</div>
@@ -122,11 +117,11 @@ const HomePage = () => {
 				<div className="md:col-span-2">
 					<ImageTextBlock
 						variant="landscape"
-						title={postsHDK[2]?.title?.rendered}
-						description={postsHDK[2]?.excerpt?.rendered}
-						imgSrc={getFeaturedImage(postsHDK[2])}
+						title={postsHDK[0]?.title?.rendered}
+						description={postsHDK[0]?.excerpt?.rendered}
+						imgSrc={getFeaturedImage(postsHDK[0])}
 						textPosition="bottom"
-						onClick={() => handleOnClick(postsHDK[2]?.id, postsHDK[2]?.slug)}
+						onClick={() => handleOnClick(postsHDK[0]?.id, postsHDK[0]?.slug)}
 					/>
 				</div>
 

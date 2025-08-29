@@ -24,14 +24,14 @@ const NavigationBar = () => {
 						</NavigationMenuLink>
 					</NavigationMenuItem>
 
-					{/* <NavigationMenuItem className="cursor-pointer">
+					<NavigationMenuItem className="cursor-pointer">
 						<NavigationMenuLink
 							asChild
 							className="p-0 hover:bg-transparent hover:text-stone-500! data-[state=open]:bg-transparent focus:bg-transparent"
 						>
-							<Link to="/news" className="pl-4">News</Link>
+							<Link to="/notices" className="pl-4">Thông Báo</Link>
 						</NavigationMenuLink>
-					</NavigationMenuItem> */}
+					</NavigationMenuItem>
 				</NavigationMenuList>
 			</NavigationMenu>
 		</div>

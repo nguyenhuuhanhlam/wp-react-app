@@ -54,7 +54,7 @@ const PostDetailPage = () => {
 			</div>
 
 			<div className="col-span-1 md:col-span-2">
-				<h1 className="text-[18px]! font-bold text-stone-500 py-8">RELATED TOPICS</h1>
+				<h1 className="text-[18px]! font-bold text-stone-500 py-8">TIN LIÊN QUAN</h1>
 				<div>
 					{relateds.map(e => {
 						return (
