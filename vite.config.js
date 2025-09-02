@@ -38,7 +38,7 @@ import react from '@vitejs/plugin-react-swc';
 import path from 'path';
 
 export default defineConfig({
-  base: '/wp-content/themes/wp-react/', // Đảm bảo khớp với URL của WordPress
+  // base: '/wp-content/themes/wp-react/', 
   plugins: [react()],
   resolve: {
     alias: {
