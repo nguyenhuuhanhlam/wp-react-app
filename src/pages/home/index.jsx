@@ -88,33 +88,8 @@ const HomePage = () => {
 
 			<h1 className="text-[18px]! font-bold text-stone-500 py-4">HOẠT ĐỘNG KHOA</h1>
 			<section className="grid grid-cols-1 md:grid-cols-4 gap-8">
-				{/* COL 1 */}
-				<div className="md:col-span-1 grid grid-rows-2 gap-8">
-					<div>
-						<ImageTextBlock
-							variant="landscape"
-							title={postsHDK[1]?.title?.rendered}
-							description={postsHDK[1]?.excerpt?.rendered}
-							imgSrc={getFeaturedImage(postsHDK[1])}
-							imageSize="sm:w-64"
-							textPosition="bottom"
-							onClick={() => handleOnClick(postsHDK[1]?.id, postsHDK[1]?.slug)}
-						/>
-					</div>
-					<div>
-						<ImageTextBlock
-							variant="landscape"
-							title={postsHDK[2]?.title?.rendered}
-							description={postsHDK[2]?.excerpt?.rendered}
-							imgSrc={getFeaturedImage(postsHDK[2])}
-							textPosition="bottom"
-							onClick={() => handleOnClick(postsHDK[2]?.id, postsHDK[2]?.slug)}
-						/>
-					</div>
-				</div>
-
-				{/* COL 2 */}
-				<div className="md:col-span-2">
+				{/* COL 2 (ở mobile nằm trên cùng) */}
+				<div className="order-1 md:order-2 md:col-span-2">
 					<ImageTextBlock
 						variant="landscape"
 						title={postsHDK[0]?.title?.rendered}
@@ -125,23 +100,38 @@ const HomePage = () => {
 					/>
 				</div>
 
-				{/* COL 3 */}
-				<div className="md:col-span-1 grid grid-rows-2 gap-8">
-					<div>
+				{/* WRAPPER cho COL 1 & 3 */}
+				<div className="order-2 md:order-[1,3] grid grid-cols-2 gap-8 md:col-span-2">
+					{/* COL 1 */}
+					<div className="grid grid-rows-2 gap-8 md:col-span-1">
+						<ImageTextBlock
+							variant="landscape"
+							title={postsHDK[1]?.title?.rendered}
+							imgSrc={getFeaturedImage(postsHDK[1])}
+							textPosition="bottom"
+							onClick={() => handleOnClick(postsHDK[1]?.id, postsHDK[1]?.slug)}
+						/>
+						<ImageTextBlock
+							variant="landscape"
+							title={postsHDK[2]?.title?.rendered}
+							imgSrc={getFeaturedImage(postsHDK[2])}
+							textPosition="bottom"
+							onClick={() => handleOnClick(postsHDK[2]?.id, postsHDK[2]?.slug)}
+						/>
+					</div>
+
+					{/* COL 3 */}
+					<div className="grid grid-rows-2 gap-8 md:col-span-1">
 						<ImageTextBlock
 							variant="landscape"
 							title={postsHDK[3]?.title?.rendered}
-							description={postsHDK[3]?.excerpt?.rendered}
 							imgSrc={getFeaturedImage(postsHDK[3])}
 							textPosition="bottom"
 							onClick={() => handleOnClick(postsHDK[3]?.id, postsHDK[3]?.slug)}
 						/>
-					</div>
-					<div>
 						<ImageTextBlock
 							variant="landscape"
 							title={postsHDK[4]?.title?.rendered}
-							description={postsHDK[4]?.excerpt?.rendered}
 							imgSrc={getFeaturedImage(postsHDK[4])}
 							textPosition="bottom"
 							onClick={() => handleOnClick(postsHDK[4]?.id, postsHDK[4]?.slug)}
@@ -149,6 +139,8 @@ const HomePage = () => {
 					</div>
 				</div>
 			</section>
+
+
 
 			{
 				events.length > 0 &&

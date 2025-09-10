@@ -135,7 +135,7 @@ const ImageTextBlock = ({
   return (
     <div
       className={clsx(
-        "flex gap-4 items-start cursor-pointer hover:text-stone-500 w-full",
+        "flex gap-1 items-start cursor-pointer hover:text-stone-500 w-full",
         textPosition === "side" ? "flex-row" : "flex-col"
       )}
       onClick={onClick}
