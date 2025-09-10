@@ -19,28 +19,28 @@ const HomePage = () => {
 	const [page, setPage] = useState(2)
 	const [loading, setLoading] = useState(false)
 	const [hasMore, setHasMore] = useState(true)
-	const [observerSupported, setObserverSupported] = useState(true)
-	const observer = useRef(null)
+	// const [observerSupported, setObserverSupported] = useState(true)
+	// const observer = useRef(null)
 
 	const navigate = useNavigate()
 
-	const lastPostRef = useCallback((node) => {
-		if (!observerSupported) return
-		if (loading) return
-		if (observer.current) observer.current.disconnect()
+	// const lastPostRef = useCallback((node) => {
+	// 	if (!observerSupported) return
+	// 	if (loading) return
+	// 	if (observer.current) observer.current.disconnect()
 
-		try {
-			observer.current = new IntersectionObserver((entries) => {
-				if (entries[0].isIntersecting && hasMore) {
-					setPage((prev) => prev + 1)
-				}
-			})
-			if (node) observer.current.observe(node)
-		} catch (err) {
-			console.warn("IntersectionObserver not supported, fallback to button")
-			setObserverSupported(false)
-		}
-	}, [loading, hasMore, observerSupported])
+	// 	try {
+	// 		observer.current = new IntersectionObserver((entries) => {
+	// 			if (entries[0].isIntersecting && hasMore) {
+	// 				setPage((prev) => prev + 1)
+	// 			}
+	// 		})
+	// 		if (node) observer.current.observe(node)
+	// 	} catch (err) {
+	// 		console.warn("IntersectionObserver not supported, fallback to button")
+	// 		setObserverSupported(false)
+	// 	}
+	// }, [loading, hasMore, observerSupported])
 
 	useEffect(() => {
 		getPostsByCategory(36, 5, 1)
@@ -150,7 +150,10 @@ const HomePage = () => {
 				</div>
 			</section>
 
-			<h1 className="text-[18px]! font-bold text-stone-500 py-8">SỰ KIỆN</h1>
+			{
+				events.length > 0 &&
+				<h1 className="text-[18px]! font-bold text-stone-500 py-8">SỰ KIỆN</h1>
+			}
 			<section className="grid grid-cols-1">
 				<Carousel>
 					<CarouselContent>
@@ -168,8 +171,6 @@ const HomePage = () => {
 							))
 						}
 					</CarouselContent>
-					{/* <CarouselPrevious />
-					<CarouselNext /> */}
 				</Carousel>
 			</section>
 
