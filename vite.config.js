@@ -67,15 +67,15 @@ export default defineConfig({
     minify: 'esbuild',
     sourcemap: false, // Tắt sourcemap trong production
   },
-  server: {
-    host: '0.0.0.0',
-    port: 5173,
-    cors: true,
-    allowedHosts: ['.ngrok-free.app', 'localhost', '127.0.0.1', 'labtest.local'],
-    watch: {
-      usePolling: true,
-    },
-  },
+  // server: {
+  //   host: '0.0.0.0',
+  //   port: 5173,
+  //   cors: true,
+  //   allowedHosts: ['.ngrok-free.app', 'localhost', '127.0.0.1', 'labtest.local', 'archihau.edu.vn'],
+  //   watch: {
+  //     usePolling: true,
+  //   },
+  // },
   optimizeDeps: {
     include: ['react', 'react-dom'],
   },
