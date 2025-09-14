@@ -29,7 +29,7 @@ const NoticePage = () => {
 							className="flex items-center"
 							key={k}
 						>
-							<div className="pr-4 text-xs text-neutral-500">{dayjs(e.date).format('DD-MM-YYYY')}</div>
+							<div className="pr-4 text-xs text-neutral-500 min-w-[90px] ">{dayjs(e.date).format('DD-MM-YYYY')}</div>
 							<div
 								key={e.id}
 								className="hidden sm:block text-sm text-neutral-800 overflow-hidden my-2 pl-2 border-l hover:text-stone-500 cursor-pointer"

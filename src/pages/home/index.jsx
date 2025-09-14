@@ -86,7 +86,7 @@ const HomePage = () => {
 	return (
 		<div className="bg-white text-black w-full">
 
-			<h1 className="text-[18px]! font-bold text-stone-500 py-4">HOẠT ĐỘNG KHOA</h1>
+			<h1 className="text-[14px]! font-bold py-4">HOẠT ĐỘNG KHOA</h1>
 			<section className="grid grid-cols-1 md:grid-cols-4 gap-8">
 				{/* COL 2 (ở mobile nằm trên cùng) */}
 				<div className="order-1 md:order-2 md:col-span-2">
@@ -144,7 +144,7 @@ const HomePage = () => {
 
 			{
 				events.length > 0 &&
-				<h1 className="text-[18px]! font-bold text-stone-500 py-8">SỰ KIỆN</h1>
+				<h1 className="text-[14px]! font-bold py-8">SỰ KIỆN</h1>
 			}
 			<section className="grid grid-cols-1">
 				<Carousel>
@@ -170,7 +170,7 @@ const HomePage = () => {
 			<section className="grid grid-cols-1 md:grid-cols-6 gap-8">
 
 				<div className="md:col-span-4">
-					<h1 className="text-[18px]! font-bold text-stone-500 py-8">TIN NỔI BẬT</h1>
+					<h1 className="text-[14px]! font-bold py-8">TIN NỔI BẬT</h1>
 					<PostsGrid posts={news} columns={2} mobileColumns={1} onClick={handleOnClick} />
 
 					{loading && (
@@ -197,7 +197,7 @@ const HomePage = () => {
 				</div>
 
 				<div className="md:col-span-2">
-					<h1 className="text-[18px]! font-bold text-stone-500 py-8">THÔNG BÁO</h1>
+					<h1 className="text-[14px]! font-bold py-8">THÔNG BÁO</h1>
 					{notices.map(e => {
 						return (
 							<div
@@ -211,9 +211,15 @@ const HomePage = () => {
 							/>
 						)
 					})}
-					<div className="p-2 text-neutral-500 border hover:border-blue-300 cursor-pointer">Xem Thêm Thông Báo</div>
 
-					<h1 className="text-[18px]! font-bold text-stone-500 py-4">SẢN PHẨM</h1>
+					<div
+						className="p-2 text-xs text-blue-600 cursor-pointer"
+						onClick={() => navigate('/notices')}
+					>
+						Xem Thêm Thông Báo
+					</div>
+
+					<h1 className="text-[14px]! font-bold py-4 mt-8">SẢN PHẨM</h1>
 					{products.map(e => {
 						return (
 							<div key={e.id} className="py-4">
