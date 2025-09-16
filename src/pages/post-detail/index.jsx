@@ -30,7 +30,7 @@ const PostDetailPage = () => {
 		<section className="grid grid-cols-1 md:grid-cols-6 gap-8">
 			<div className="col-span-2 md:col-span-4">
 				<h1
-					className="text-lg font-semibold py-8"
+					className="text-[20px]! font-semibold py-8"
 					dangerouslySetInnerHTML={{ __html: post?.title.rendered }}
 				/>
 				<div className="py-2 text-xs text-sky-500">
