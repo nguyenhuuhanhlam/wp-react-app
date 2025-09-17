@@ -178,11 +178,11 @@ const ImageTextBlock = ({
 
       {(textPosition === "bottom" || textPosition === "side") && (
         <div className="flex flex-col justify-center mt-2 sm:mt-0 overflow-hidden flex-1">
-          <h3 ref={titleRef} className="text-lg font-semibold">{title}</h3>
+          <h3 ref={titleRef} className="text-lg ml-2 font-semibold">{title}</h3>
           {description && (
             <div
               ref={descRef}
-              className="hidden sm:block text-sm text-neutral-500 overflow-hidden text-ellipsis"
+              className="hidden sm:block ml-2 text-sm text-neutral-500 overflow-hidden text-ellipsis"
               style={{
                 display: '-webkit-box',
                 WebkitBoxOrient: 'vertical',
